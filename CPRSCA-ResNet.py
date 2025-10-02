@@ -175,7 +175,7 @@ class ResNet(nn.Module):
         self.maxpool = nn.MaxPool2d(kernel_size=(1, 3), stride=(1, 2))
         self.dropout = nn.Dropout(0.5)
         self.layer1 = self._make_layer(block, 128, layers[0])  # out Channel
-        self.layer2 = self._make_layer(block, 264, layers[1], stride=2)
+        self.layer2 = self._make_layer(block, 256, layers[1], stride=2)
         self.layer3 = self._make_layer(block, 512, layers[2], stride=2)
         self.layer4 = self._make_layer(block, 1024, layers[3], stride=2)
         self.avgpool = nn.AdaptiveMaxPool2d((1, 1))
@@ -223,7 +223,7 @@ def ResNet152(in_channels=1, num_classes=2):
 
 if __name__ == '__main__':
     # 测试网络结构
-    input_data = torch.randn(8, 18, 1280)
+    input_data = torch.randn(8, 18, 768)
     model = ResNet34(in_channels=1, num_classes=2)
     output = model(input_data)
     print(output.shape)  # 输出预测结果的形状
